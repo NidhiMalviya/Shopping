@@ -1,0 +1,10 @@
+<h3>delivery address</h3>
+<h4 class="card-title"><b><%= current_user.name %></b></h4>
+          <li class="card-text"><%= current_user.address.address_1 %></li>
+          <li class="card-text"><%= current_user.address.address_2 %></li>
+          <li class="card-text"><%= current_user.address.city %></li>
+          <li class="card-text"><%= current_user.address.state %></li>
+          <li class="card-text"><%= current_user.address.postal_code %></li>
+          <li class="card-text"><%= current_user.address.country %></li>
+        </ul>
+        <%= link_to 'Deliver to this address', payment_option_path, :class => 'btn btn-lg btn-block btn-warning'%>

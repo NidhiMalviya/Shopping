@@ -1,0 +1,73 @@
+<h1><%= t('.title', resource: resource_name.to_s.humanize) %></h1>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= bootstrap_devise_error_messages! %>
+
+    <%= f.label :name %>
+    <%= f.text_field :name, autofocus: true, autocomplete: 'name', class: 'form-control' %>
+
+ 
+    <%= f.label :phone %>
+    <%= f.telephone_field :phone, autofocus: true, autocomplete: 'phone', class: 'form-control' %>
+
+    <%= f.label :image %>
+    <%= f.file_field :image, class: 'form-control' %>
+
+  
+    <%= f.label :password %>
+    <%= f.password_field :password, autocomplete: 'new-password', class: 'form-control' %>
+
+    <small class="form-text text-muted"><%= t('.leave_blank_if_you_don_t_want_to_change_it') %></small>
+  
+
+  
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, autocomplete: 'new-password', class: 'form-control'  %>
+  
+
+    <%= f.label :current_password %>
+    <%= f.password_field :current_password, autocomplete: 'current-password', class: 'form-control' %>
+
+    <small class="form-text text-muted"><%= t('.we_need_your_current_password_to_confirm_your_changes') %></small>
+  
+
+  Address
+  <div class="container">
+  <%= f.fields_for :address, resource.address do |addresses_form| %>
+      <div class="form-group">
+      <%= addresses_form.label :address_1 %>
+      <%= addresses_form.text_field :address_1, class: 'form-control'%>
+      </div>
+      <div class="form-group">
+      <%= addresses_form.label :address_2 %>
+      <%= addresses_form.text_field :address_2, class: 'form-control'%>
+      </div>
+      <div class="form-row">
+      <div class="form-group col-md-6">
+      <%= addresses_form.label :city %>
+      <%= addresses_form.text_field :city, class: 'form-control' %>
+      </div>
+      <div class="form-group col-md-6">
+      <%= addresses_form.label :state %>
+      <%= addresses_form.text_field :state, class: 'form-control' %>
+      </div>
+      <div class="form-group col-md-6"> 
+      <%= addresses_form.label :country %>
+      <%= addresses_form.text_field :country, class: 'form-control' %>
+      </div>
+      <div class="form-group col-md-6">
+      <%= addresses_form.label :postal_code %>
+      <%= addresses_form.number_field :postal_code, class: 'form-control' %>
+      </div>
+      </div>
+    <% end %>
+  </div>
+
+
+    <%= f.submit t('.update'), class: 'btn btn-primary' %>
+
+<% end %>
+
+<p><%= t('.unhappy') %>? <%= link_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete %>.</p>
+
+<%= link_to t('.back'), :back, :class => 'btn btn-primary' %>

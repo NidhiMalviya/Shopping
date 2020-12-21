@@ -1,0 +1,77 @@
+
+<h1><%= t('.sign_up') %></h1>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= bootstrap_devise_error_messages! %>
+  
+ 
+    <%= f.label :name %>
+    <%= f.text_field :name, autofocus: true, autocomplete: 'name', class: 'form-control' %>
+  
+
+
+    <%= f.label :email %>
+    <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control' %>
+  
+  
+    <%= f.label :phone %>
+    <%= f.telephone_field :phone, autofocus: true, autocomplete: 'phone', class: 'form-control' %>
+
+
+  
+    <%= f.label :image %>
+    <%= f.file_field :image, class: 'form-control' %>
+  
+
+  
+    <%= f.label :password %>
+    <%= f.password_field :password, autocomplete: 'current-password', class: 'form-control' %>
+
+    <% if @minimum_password_length %>
+      <small class="form-text text-muted"><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></small>
+    <% end %>
+
+
+  
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, autocomplete: 'current-password', class: 'form-control' %>
+  
+
+  Address
+  <div class="container">
+    <%= f.fields_for :address, resource.build_address do |addresses_form| %>
+      <div class="form-group">
+      <%= addresses_form.label :address_1 %>
+      <%= addresses_form.text_field :address_1, class: 'form-control'%>
+      </div>
+      <div class="form-group">
+      <%= addresses_form.label :address_2 %>
+      <%= addresses_form.text_field :address_2, class: 'form-control'%>
+      </div>
+      <div class="form-row">
+      <div class="form-group col-md-6">
+      <%= addresses_form.label :city %>
+      <%= addresses_form.text_field :city, class: 'form-control' %>
+      </div>
+      <div class="form-group col-md-6">
+      <%= addresses_form.label :state %>
+      <%= addresses_form.text_field :state, class: 'form-control' %>
+      </div>
+      <div class="form-group col-md-6"> 
+      <%= addresses_form.label :country %>
+      <%= addresses_form.text_field :country, class: 'form-control' %>
+      </div>
+      <div class="form-group col-md-6">
+      <%= addresses_form.label :postal_code %>
+      <%= addresses_form.number_field :postal_code, class: 'form-control' %>
+      </div>
+      </div>
+    <% end %>
+  </div>
+
+  
+    <%= f.submit t('.sign_up'), class: 'btn btn-primary' %>
+  
+<% end %>
+
+<%= render 'devise/shared/links' %>

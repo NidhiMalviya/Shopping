@@ -1,0 +1,20 @@
+<% if current_user.orders.present? %>
+    <h3>Order Placed </h3>
+    <table>
+      <tr>
+          <th>Total Quantity</th>
+          <th>Total Price</th>
+      </tr>
+    
+      <tbody>
+        <% @orders.each do |order| %>
+          <tr>
+            <td><%= order.total_quantity %></td>
+            <td> <span>Rs</span> <%= order.total_price %></td>
+          </tr>
+         <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <%= render plain: 'no order yet' %>
+  <% end %>
